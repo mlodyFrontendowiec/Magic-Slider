@@ -7,6 +7,12 @@ export class Magic {
     this.img2El = document.querySelector(
       ".slider__image-container--second img"
     );
+    this.img1ContainerEl = document.querySelector(
+      ".slider__image-container--first"
+    );
+    this.img2ContainerEl = document.querySelector(
+      ".slider__image-container--second"
+    );
     this.dragging = false;
     this.imagesContainerLeftOffset = this.imagesContainerEl.offsetLeft;
 
@@ -45,9 +51,9 @@ export class Magic {
 
   move(clientX) {
     const offset = this.getOffset(clientX);
-    console.log(offset);
-    this.dividerEl.style.left = offset + "px";
-    this.showImage();
+    const percent = (offset / this.imagesContainerWidth) * 100;
+    this.dividerEl.style.left = `${percent}%`;
+    this.img2ContainerEl.style.width = `${percent}%`;
   }
   handleResize() {
     this.imagesContainerWidth = this.imagesContainerEl.offsetWidth;
